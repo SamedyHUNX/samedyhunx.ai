@@ -3,13 +3,16 @@ import { Button } from "@/components/ui/button";
 import { PlusCircle } from "lucide-react";
 import Link from "next/link";
 import { ProfileCard } from "@/components/ui/customs/profile-card";
+import { dummyPosts } from "@/dummy-post";
+import { PostCard } from "@/components/ui/customs/post-card";
 
 export default async function Home() {
   const isAdmin = true;
-  const posts = [];
+  const posts = dummyPosts;
+  const loading = false;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
       <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-10">
         <div className="container mx-auto px-4 py-6 flex items-center justify-between">
           <Link
@@ -34,11 +37,25 @@ export default async function Home() {
       <ProfileCard
         image="/profile.jpg"
         name="Samedy Hun"
-        description="I like to train deep neural nets on large datasets 🧠🤖💥"
+        description="I am a full-stack and an aspiring AI engineer 🧠🤖💥"
         gitHubLink="https://github.com/SamedyHUNX"
         xLink=""
         email="samedyhunx@gmail.com"
       />
+
+      {loading ? (
+        <div className="text-center">Loading posts...</div>
+      ) : posts.length === 0 ? (
+        <div className="text-center text-muted-foreground">
+          No posts yet. {isAdmin && "Create your first post!"}
+        </div>
+      ) : (
+        <div className="space-y-6">
+          {posts.map((post) => (
+            <PostCard key={post.id} post={post} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
