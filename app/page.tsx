@@ -1,14 +1,15 @@
 "use client";
 
-import { AuthButton } from "@/components/ui/customs/auth-button";
 import { Button } from "@/components/ui/button";
 import { PlusCircle } from "lucide-react";
 import Link from "next/link";
-import { ProfileCard } from "@/components/ui/customs/profile-card";
-import { PostCard } from "@/components/ui/customs/post-card";
+
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { Post } from "./generated/prisma";
+import { AuthButton } from "@/components/customs/auth-button";
+import { ProfileCard } from "@/components/customs/profile-card";
+import { PostCard } from "@/components/customs/post-card";
 
 export default function HomePage() {
   const { data: session } = useSession();

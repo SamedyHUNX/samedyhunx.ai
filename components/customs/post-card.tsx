@@ -1,31 +1,42 @@
+"use client";
+
 import Link from "next/link";
-import { Avatar, AvatarFallback, AvatarImage } from "../avatar";
+import { Heart, MessageCircle } from "lucide-react";
+import { useSession } from "next-auth/react";
+import { useState } from "react";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../card";
-import { Button } from "../button";
-import { Heart, MessageCircle } from "lucide-react";
+} from "../ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Button } from "../ui/button";
 
 type PostCardProps = {
   post: {
     id: string;
     title: string;
     content: string;
-    author: {
-      name: string;
-      image: string;
-    };
     createdAt: string;
+    author: {
+      name: string | null;
+      image: string | null;
+    };
+    _count: {
+      comments: number;
+      likes: number;
+    };
   };
 };
 
 export const PostCard = ({ post }: PostCardProps) => {
-  const likeLoading = false;
-  const liked = true;
+  const { data: session } = useSession();
+  const [liked, setLiked] = useState(false);
+  const [likedCount, setLikedCount] = useState(post._count.likes);
+  const [likeLoading, setLikeLoading] = useState(true);
+
   return (
     <Card>
       <CardHeader>
@@ -65,7 +76,7 @@ export const PostCard = ({ post }: PostCardProps) => {
                 : ""
             }`}
           />
-          <span>10</span>
+          <span>{likedCount}</span>
         </Button>
         <Button
           variant={"ghost"}
@@ -73,7 +84,7 @@ export const PostCard = ({ post }: PostCardProps) => {
           className="flex items-center space-x-1"
         >
           <MessageCircle />
-          <span>5</span>
+          <span>{post._count.comments}</span>
         </Button>
       </CardFooter>
     </Card>

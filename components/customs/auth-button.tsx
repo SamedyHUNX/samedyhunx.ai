@@ -1,14 +1,14 @@
 "use client";
 
-import { Button } from "../button";
 import { useSession, signIn, signOut } from "next-auth/react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "../dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "../avatar";
+} from "../ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Button } from "../ui/button";
 
 export const AuthButton = () => {
   const { data: session, status } = useSession();

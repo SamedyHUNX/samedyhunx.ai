@@ -1,5 +1,6 @@
 "use client";
 
+import { MarkdownRenderer } from "@/components/customs/markdown-renderer";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -17,7 +18,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft, Eye } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 export default function CreatePostPage() {
   const [preview, setPreview] = useState(false);
@@ -28,7 +29,7 @@ export default function CreatePostPage() {
 
   const router = useRouter();
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!title.trim() || !content.trim()) return;
 
@@ -122,16 +123,18 @@ export default function CreatePostPage() {
           {preview && (
             <Card>
               <CardHeader>
-                <CardTitle>Card Title</CardTitle>
-                <CardDescription>Card Description</CardDescription>
-                <CardAction>Card Action</CardAction>
+                <CardTitle>Preview</CardTitle>
               </CardHeader>
               <CardContent>
-                <p>Card Content</p>
+                <div className="space-y-4">
+                  <h2 className="text-2xl font-bold">
+                    {title || "Post Title"}
+                  </h2>
+                  <MarkdownRenderer
+                    content={content || "Your content will appear here..."}
+                  />
+                </div>
               </CardContent>
-              <CardFooter>
-                <p>Card Footer</p>
-              </CardFooter>
             </Card>
           )}
         </div>
