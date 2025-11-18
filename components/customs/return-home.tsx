@@ -9,7 +9,7 @@ export const ReturnHome = () => {
         <Button variant="ghost" asChild>
           <Link href="/">
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Home
+            Nevermind
           </Link>
         </Button>
       </div>

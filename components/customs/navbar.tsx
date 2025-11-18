@@ -8,8 +8,8 @@ export const Navbar = ({ isAdmin }: { isAdmin: boolean }) => {
   const [searchOpen, setSearchOpen] = useState(false);
 
   return (
-    <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-10">
-      <div className="container mx-auto px-4 py-6 flex items-center justify-between">
+    <header className="bg-gray-100 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-10 h-[100px]">
+      <div className="container mx-auto px-4 py-6 flex items-center justify-between h-full">
         <Link
           href={"/"}
           className="font-light text-3xl text-neutral-900 hover:text-neutral-700 transition-colors tracking-tighter"
