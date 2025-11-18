@@ -1,15 +1,37 @@
+"use client";
+
 import { AuthButton } from "@/components/ui/customs/auth-button";
 import { Button } from "@/components/ui/button";
 import { PlusCircle } from "lucide-react";
 import Link from "next/link";
 import { ProfileCard } from "@/components/ui/customs/profile-card";
-import { dummyPosts } from "@/dummy-post";
 import { PostCard } from "@/components/ui/customs/post-card";
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import { Post } from "./generated/prisma";
 
-export default async function Home() {
-  const isAdmin = true;
-  const posts = dummyPosts;
-  const loading = false;
+export default function HomePage() {
+  const { data: session } = useSession();
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const fetchPosts = async () => {
+    try {
+      const response = await fetch("/api/posts");
+      const data = await response.json();
+      setPosts(data);
+    } catch (error) {
+      console.error("Failed to fetch posts: ", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const isAdmin = session?.user?.role === "ADMIN";
 
   return (
     <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100">
