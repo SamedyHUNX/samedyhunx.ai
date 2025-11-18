@@ -13,29 +13,48 @@ import {
 } from "../ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
+import { MarkdownRenderer } from "./markdown-renderer";
 
-type PostCardProps = {
-  post: {
-    id: string;
-    title: string;
-    content: string;
-    createdAt: string;
-    author: {
-      name: string | null;
-      image: string | null;
-    };
-    _count: {
-      comments: number;
-      likes: number;
-    };
+export type PostCardProps = {
+  id: string;
+  title: string;
+  content: string;
+  createdAt: string;
+  author: {
+    name: string | null;
+    image: string | null;
+  };
+  _count: {
+    comments: number;
+    likes: number;
   };
 };
 
-export const PostCard = ({ post }: PostCardProps) => {
+export const PostCard = ({ post }: { post: PostCardProps }) => {
   const { data: session } = useSession();
   const [liked, setLiked] = useState(false);
   const [likedCount, setLikedCount] = useState(post._count.likes);
   const [likeLoading, setLikeLoading] = useState(true);
+
+  const handleLike = async () => {
+    if (!session) return;
+
+    try {
+      const response = await fetch(`/api/posts/${post.id}/like`, {
+        method: "POST",
+      });
+
+      const data = await response.json();
+
+      setLiked(data.liked);
+      setLikedCount((prev) => (data.liked ? prev + 1 : prev - 1));
+    } catch (error) {
+      console.error("Failed to toggle like: ", error);
+    }
+  };
+
+  const content =
+    post.content.slice(0, 200) + (post.content.length > 200 ? "..." : "");
 
   return (
     <Card>
@@ -59,13 +78,15 @@ export const PostCard = ({ post }: PostCardProps) => {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <p>Card content</p>
+        <MarkdownRenderer content={content} />
       </CardContent>
       <CardFooter className="flex items-center space-x-4">
         <Button
           variant={"ghost"}
           size={"sm"}
           className="flex items-center space-x-1"
+          onClick={handleLike}
+          disabled={!session}
         >
           <Heart
             className={`h-4 w-4 ${

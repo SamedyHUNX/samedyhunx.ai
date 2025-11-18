@@ -6,14 +6,13 @@ import Link from "next/link";
 
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { Post } from "./generated/prisma";
 import { AuthButton } from "@/components/customs/auth-button";
 import { ProfileCard } from "@/components/customs/profile-card";
-import { PostCard } from "@/components/customs/post-card";
+import { PostCard, PostCardProps } from "@/components/customs/post-card";
 
 export default function HomePage() {
   const { data: session } = useSession();
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<PostCardProps[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
