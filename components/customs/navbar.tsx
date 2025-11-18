@@ -9,9 +9,9 @@ export const Navbar = ({ isAdmin }: { isAdmin: boolean }) => {
       <div className="container mx-auto px-4 py-6 flex items-center justify-between">
         <Link
           href={"/"}
-          className="font-cormorantGaramond font-light text-4xl text-neutral-900 hover:text-neutral-700 transition-colors"
+          className="font-light text-3xl text-neutral-900 hover:text-neutral-700 transition-colors tracking-tighter"
         >
-          <h1>samedyhunx.ai</h1>
+          <h1>samedyhunx.tech</h1>
         </Link>
         <div className="flex items-center space-x-4">
           {isAdmin && (

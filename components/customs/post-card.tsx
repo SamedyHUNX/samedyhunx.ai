@@ -87,20 +87,8 @@ export const PostCard = ({
     : post.content.slice(0, 200) + (post.content.length > 200 ? "..." : "");
 
   return (
-    <Card>
+    <Card className="mx-4">
       <CardHeader>
-        <div className="flex items-center space-x-4">
-          <Avatar>
-            <AvatarImage src={post.author.image || ""} />
-            <AvatarFallback>{post.author.name?.[0] || "A"}</AvatarFallback>
-          </Avatar>
-          <div>
-            <p className="text-sm font-medium">{post.author.name}</p>
-            <p className="text-xs text-muted-foreground">
-              {new Date(post.createdAt).toLocaleDateString()}
-            </p>
-          </div>
-        </div>
         <CardTitle className="text-xl">
           {showFullContent ? (
             post.title
@@ -113,6 +101,20 @@ export const PostCard = ({
       </CardHeader>
       <CardContent>
         <MarkdownRenderer content={content} />
+      </CardContent>
+      <CardContent>
+        <div className="flex items-center space-x-4">
+          <Avatar>
+            <AvatarImage src={post.author.image || ""} />
+            <AvatarFallback>{post.author.name?.[0] || "A"}</AvatarFallback>
+          </Avatar>
+          <div>
+            <p className="text-sm font-medium">{post.author.name}</p>
+            <p className="text-xs text-muted-foreground">
+              {new Date(post.createdAt).toLocaleDateString()}
+            </p>
+          </div>
+        </div>
       </CardContent>
       <CardFooter className="flex items-center space-x-4">
         <Button
