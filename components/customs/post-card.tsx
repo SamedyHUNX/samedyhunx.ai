@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Heart, MessageCircle } from "lucide-react";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -35,6 +35,29 @@ export const PostCard = ({ post }: { post: PostCardProps }) => {
   const [liked, setLiked] = useState(false);
   const [likedCount, setLikedCount] = useState(post._count.likes);
   const [likeLoading, setLikeLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchLikeStatus = async () => {
+      if (!session?.user?.id) {
+        setLikeLoading(false);
+        return;
+      }
+
+      try {
+        const response = await fetch(`/api/posts/${post.id}/like-status`);
+        if (response.ok) {
+          const data = await response.json();
+          setLiked(data.liked);
+        }
+      } catch (error) {
+        console.error("Failed to fetch like status", error);
+      } finally {
+        setLikeLoading(false);
+      }
+    };
+
+    fetchLikeStatus();
+  }, [post.id, session?.user?.id]);
 
   const handleLike = async () => {
     if (!session) return;
