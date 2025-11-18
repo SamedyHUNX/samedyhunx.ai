@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Poppins } from "next/font/google";
 import "./globals.css";
+import { Providers } from "@/components/providers/provider";
 
 const cormorantGaramond = Cormorant_Garamond({
   weight: ["400"],
@@ -29,7 +30,7 @@ export default function RootLayout({
       <body
         className={`${cormorantGaramond.variable} ${poppins.variable} bg-neutral-100`}
       >
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

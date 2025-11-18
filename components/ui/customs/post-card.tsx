@@ -2,9 +2,7 @@ import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "../avatar";
 import {
   Card,
-  CardAction,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,

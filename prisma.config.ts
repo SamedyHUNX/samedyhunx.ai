@@ -7,9 +7,6 @@ export default defineConfig({
   },
   engine: "classic",
   datasource: {
-    url: env(
-      "DATABASE_URL"
-      // "postgresql://postgres:randompassword@localhost:5433/blogs",
-    ),
+    url: "postgresql://postgres:randompassword@localhost:5433/blogs",
   },
 });
