@@ -12,7 +12,20 @@ import {
 import { Button } from "../button";
 import { Heart, MessageCircle } from "lucide-react";
 
-export const PostCard = ({ post }) => {
+type PostCardProps = {
+  post: {
+    id: string;
+    title: string;
+    content: string;
+    author: {
+      name: string;
+      image: string;
+    };
+    createdAt: string;
+  };
+};
+
+export const PostCard = ({ post }: PostCardProps) => {
   const likeLoading = false;
   const liked = true;
   return (
