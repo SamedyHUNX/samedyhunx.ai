@@ -30,7 +30,13 @@ export type PostCardProps = {
   };
 };
 
-export const PostCard = ({ post }: { post: PostCardProps }) => {
+export const PostCard = ({
+  post,
+  showFullContent = false,
+}: {
+  post: PostCardProps;
+  showFullContent: boolean;
+}) => {
   const { data: session } = useSession();
   const [liked, setLiked] = useState(false);
   const [likedCount, setLikedCount] = useState(post._count.likes);
@@ -76,8 +82,9 @@ export const PostCard = ({ post }: { post: PostCardProps }) => {
     }
   };
 
-  const content =
-    post.content.slice(0, 200) + (post.content.length > 200 ? "..." : "");
+  const content = showFullContent
+    ? post.content
+    : post.content.slice(0, 200) + (post.content.length > 200 ? "..." : "");
 
   return (
     <Card>
@@ -95,9 +102,13 @@ export const PostCard = ({ post }: { post: PostCardProps }) => {
           </div>
         </div>
         <CardTitle className="text-xl">
-          <Link href={`/posts/${post.id}`} className="hover:underline">
-            {post.title}
-          </Link>
+          {showFullContent ? (
+            post.title
+          ) : (
+            <Link href={`/posts/${post.id}`} className="hover:underline">
+              {post.title}
+            </Link>
+          )}
         </CardTitle>
       </CardHeader>
       <CardContent>
