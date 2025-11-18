@@ -46,7 +46,7 @@ export default function PostDetailsPage() {
     <div className="min-h-screen bg-background">
       <ReturnHome />
       <main className="container mx-auto px-4 py-8">
-        <div className="max-w-2xl mx-auto space-y-8">
+        <div className="w-[90%] mx-auto space-y-8">
           <PostCard post={post} showFullContent />
           <CommentSection postId={post.id} />
         </div>
