@@ -1,12 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { PlusCircle } from "lucide-react";
-import Link from "next/link";
-
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { AuthButton } from "@/components/customs/auth-button";
 import { ProfileCard } from "@/components/customs/profile-card";
 import { PostCard, PostCardProps } from "@/components/customs/post-card";
 import { Navbar } from "@/components/customs/navbar";

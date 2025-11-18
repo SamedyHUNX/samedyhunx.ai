@@ -1,10 +1,10 @@
 "use client";
 
 import CommentSection from "@/components/customs/comment-section";
+import { Loading } from "@/components/customs/loading";
+import { NotFound } from "@/components/customs/not-found";
 import { PostCard, PostCardProps } from "@/components/customs/post-card";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
-import Link from "next/link";
+import { ReturnHome } from "@/components/customs/return-home";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -35,46 +35,16 @@ export default function PostDetailsPage() {
   };
 
   if (loading) {
-    return (
-      <div className="min-h-screen bg-background">
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center">Loading post...</div>
-        </div>
-      </div>
-    );
+    return <Loading />;
   }
 
   if (!post) {
-    return (
-      <div className="min-h-screen bg-background">
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold mb-4">Post not found</h1>
-            <Button asChild>
-              <Link href={"/"}>
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Home
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </div>
-    );
+    return <NotFound />;
   }
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b">
-        <div className="container mx-auto px-4 py-4">
-          <Button variant="ghost" asChild>
-            <Link href="/">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Home
-            </Link>
-          </Button>
-        </div>
-      </header>
-
+      <ReturnHome />
       <main className="container mx-auto px-4 py-8">
         <div className="max-w-2xl mx-auto space-y-8">
           <PostCard post={post} showFullContent />
