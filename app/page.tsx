@@ -53,7 +53,7 @@ export default function HomePage() {
         email="samedyhunx@gmail.com"
       />
 
-      <div className="space-y-6">
+      <div>
         {posts.map((post) => (
           <PostCard key={post.id} post={post} showFullContent={false} />
         ))}
