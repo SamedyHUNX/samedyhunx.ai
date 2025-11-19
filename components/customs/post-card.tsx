@@ -85,32 +85,38 @@ export const PostCard = ({
   const content = showFullContent
     ? post.content
     : post.content.slice(0, 200) + (post.content.length > 200 ? "..." : "");
-
   return (
-    <Card className="mx-4">
+    <Card className="rounded-none border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
       <CardHeader>
-        <CardTitle className="text-xl">
+        <CardTitle className="text-xl text-gray-900 dark:text-gray-100">
           {showFullContent ? (
             post.title
           ) : (
-            <Link href={`/posts/${post.id}`} className="hover:underline">
+            <Link
+              href={`/posts/${post.id}`}
+              className="hover:underline hover:text-gray-700 dark:hover:text-gray-300"
+            >
               {post.title}
             </Link>
           )}
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="text-gray-800 dark:text-gray-200">
         <MarkdownRenderer content={content} />
       </CardContent>
       <CardContent>
         <div className="flex items-center space-x-4">
           <Avatar>
             <AvatarImage src={post.author.image || ""} />
-            <AvatarFallback>{post.author.name?.[0] || "A"}</AvatarFallback>
+            <AvatarFallback className="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100">
+              {post.author.name?.[0] || "A"}
+            </AvatarFallback>
           </Avatar>
           <div>
-            <p className="text-sm font-medium">{post.author.name}</p>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
+              {post.author.name}
+            </p>
+            <p className="text-xs text-muted-foreground dark:text-gray-500">
               {new Date(post.createdAt).toLocaleDateString()}
             </p>
           </div>
@@ -120,7 +126,7 @@ export const PostCard = ({
         <Button
           variant={"ghost"}
           size={"sm"}
-          className="flex items-center space-x-1"
+          className="flex items-center space-x-1 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300"
           onClick={handleLike}
           disabled={!session}
         >
@@ -138,7 +144,7 @@ export const PostCard = ({
         <Button
           variant={"ghost"}
           size={"sm"}
-          className="flex items-center space-x-1"
+          className="flex items-center space-x-1 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300"
         >
           <MessageCircle />
           <span>{post._count.comments}</span>

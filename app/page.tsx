@@ -6,7 +6,7 @@ import { ProfileCard } from "@/components/customs/profile-card";
 import { PostCard, PostCardProps } from "@/components/customs/post-card";
 import { Navbar } from "@/components/customs/navbar";
 import { Loading } from "@/components/customs/loading";
-import Footer from "@/components/customs/footer";
+import { Footer } from "@/components/customs/footer";
 
 export default function HomePage() {
   const { data: session } = useSession();
