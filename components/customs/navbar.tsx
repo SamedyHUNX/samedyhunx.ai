@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Search, X, Plus } from "lucide-react";
+import { Search, Plus, Twitter } from "lucide-react";
 import { AuthButton } from "./auth-button";
 import SearchBar from "./search";
 import { useState } from "react";
@@ -36,7 +36,7 @@ export const Navbar = ({ isAdmin }: { isAdmin: boolean }) => {
                   className="p-2 hover:bg-gray-100 rounded-full transition-colors"
                   aria-label="Close search"
                 >
-                  <X className="h-5 w-5 text-gray-600" />
+                  <Twitter className="h-5 w-5 text-gray-600" />
                 </button>
               </div>
             )}

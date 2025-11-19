@@ -6,6 +6,7 @@ import { ProfileCard } from "@/components/customs/profile-card";
 import { PostCard, PostCardProps } from "@/components/customs/post-card";
 import { Navbar } from "@/components/customs/navbar";
 import { Loading } from "@/components/customs/loading";
+import Footer from "@/components/customs/footer";
 
 export default function HomePage() {
   const { data: session } = useSession();
@@ -48,7 +49,7 @@ export default function HomePage() {
         name="Samedy Hun"
         description="I like to build AI system from scratch 🧠🤖💥"
         gitHubLink="https://github.com/SamedyHUNX"
-        xLink=""
+        xLink="https://x.com/samedyhunx"
         email="samedyhunx@gmail.com"
       />
 
@@ -57,6 +58,12 @@ export default function HomePage() {
           <PostCard key={post.id} post={post} showFullContent={false} />
         ))}
       </div>
+      <Footer
+        year={2025}
+        name="Vadhna Samedy Hun"
+        xLink="https://x.com/samedyhunx"
+        gitHubLink="https://github.com/SamedyHUNX"
+      />
     </div>
   );
 }

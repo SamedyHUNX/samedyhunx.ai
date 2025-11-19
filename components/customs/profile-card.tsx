@@ -1,4 +1,4 @@
-import { X, Github, Mail } from "lucide-react";
+import { X, Github, Mail, Twitter } from "lucide-react";
 
 type ProfileCardProps = {
   image: string;
@@ -51,7 +51,7 @@ export const ProfileCard = ({
                   className="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center hover:bg-gray-700 hover:scale-110 transition-all duration-200 shadow-md"
                   aria-label="X"
                 >
-                  <X className="w-5 h-5 text-white" />
+                  <Twitter className="w-5 h-5 text-white" />
                 </a>
               )}
               {gitHubLink && (
