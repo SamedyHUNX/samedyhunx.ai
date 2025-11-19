@@ -11,7 +11,7 @@ type FooterProps = {
 
 export default function Footer({ name, year, xLink, gitHubLink }: FooterProps) {
   return (
-    <footer className="bg-gray-50 border-t border-gray-200">
+    <footer className="bg-gray-100 border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-6 py-6">
         <div className="flex items-center justify-between">
           {/* Copyright */}
