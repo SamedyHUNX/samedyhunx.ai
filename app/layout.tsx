@@ -17,7 +17,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "samedyhunx.ai",
+  title: "samedyhunx.tech",
   description: "Your Favorite Tech Blogs",
 };
 

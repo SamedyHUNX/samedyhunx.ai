@@ -45,11 +45,11 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: oklch(0.96 0.015 85);
   --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
+  --card: oklch(0.97 0.012 85);
   --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
+  --popover: oklch(0.97 0.012 85);
   --popover-foreground: oklch(0.129 0.042 264.695);
   --primary: oklch(0.208 0.042 265.755);
   --primary-foreground: oklch(0.984 0.003 247.858);
@@ -116,6 +116,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -123,10 +124,10 @@
 
 @layer utilities {
   .font-cormorantGaramond {
-    font-family: var(--font-geist-cormorant-garamond), serif;
+    font-family: "Georgia", "Garamond", "Times New Roman", serif;
   }
 
   .font-poppins {
-    font-family: var(--font-poppins), sans-serif;
+    font-family: "Georgia", "Garamond", "Times New Roman", serif;
   }
 }
